@@ -17,9 +17,10 @@
 import os
 import zipfile
 try:
-    from io import StringIO
+    from StringIO import StringIO
 except ImportError:  # 3+
     from io import StringIO
+    from io import BytesIO
 import base64
 
 
@@ -247,13 +248,13 @@ class WebElement(object):
                              {"using": by, "value": value})['value']
 
     def _upload(self, filename):
-        fp = StringIO()
+        fp = BytesIO()
         zipped = zipfile.ZipFile(fp, 'w', zipfile.ZIP_DEFLATED)
         zipped.write(filename, os.path.split(filename)[1])
         zipped.close()
         try:
             return self._execute(Command.UPLOAD_FILE, 
-                            {'file': base64.encodestring(fp.getvalue())})['value']
+                            {'file': base64.encodebytes(fp.getvalue())})['value']
         except WebDriverException as e:
             if "Unrecognized command: POST" in e.__str__():
                 return filename
