@@ -349,6 +349,8 @@ class RemoteConnection(object):
         """
         command_info = self._commands[command]
         assert command_info is not None, 'Unrecognised command %s' % command
+        if 'file' in params:
+            params['file'] = params['file'].decode('utf-8')       
         data = utils.dump_json(params)
         path = string.Template(command_info[1]).substitute(params)
         url = '%s%s' % (self._url, path)
