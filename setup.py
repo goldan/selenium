@@ -61,6 +61,7 @@ setup_args = {
               'selenium.webdriver.ie',
               'selenium.webdriver.opera',
               'selenium.webdriver.phantomjs',
+              'selenium.webdriver.safari',
               'selenium.webdriver.remote',
               'selenium.webdriver.support', ],
     'package_data':{
