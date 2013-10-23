@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from selenium import selenium
+from .selenium import selenium
 
 
 __version__ = "2.37.2"

@@ -33,9 +33,9 @@ from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import MoveTargetOutOfBoundsException
 
 try:
-    basestring
+    str
 except NameError:  # Python 3.x
-    basestring = str
+    str = str
 
 
 class ErrorCode(object):
@@ -130,7 +130,7 @@ class ErrorHandler(object):
         else:
             exception_class = WebDriverException
         value = response['value']
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             if exception_class == ErrorInResponseException:
                 raise exception_class(response, value)
             raise exception_class(value)

@@ -19,7 +19,7 @@ import base64
 try:
     import http.client as http_client
 except ImportError:
-    import httplib as http_client
+    import http.client as http_client
 
 import os
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities

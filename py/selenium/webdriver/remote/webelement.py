@@ -17,7 +17,7 @@
 import os
 import zipfile
 try:
-    from StringIO import StringIO
+    from io import StringIO
 except ImportError:  # 3+
     from io import StringIO
 import base64
@@ -30,7 +30,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 try:
-    str = basestring
+    str = str
 except NameError:
     pass
 

@@ -26,7 +26,7 @@ from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.html5.application_cache import ApplicationCache
 
 try:
-    str = basestring
+    str = str
 except NameError:
     pass
 
@@ -118,7 +118,7 @@ class WebDriver(object):
     def _wrap_value(self, value):
         if isinstance(value, dict):
             converted = {}
-            for key, val in value.items():
+            for key, val in list(value.items()):
                 converted[key] = self._wrap_value(val)
             return converted
         elif isinstance(value, WebElement):

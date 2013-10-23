@@ -19,6 +19,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from .abstract_event_listener import AbstractEventListener
+import collections
 
 
 def _wrap_elements(result, ef_driver):
@@ -191,7 +192,7 @@ class EventFiringWebDriver(object):
         if hasattr(self._driver, name):
             try:
                 attrib = getattr(self._driver, name)
-                if not callable(attrib):
+                if not isinstance(attrib, collections.Callable):
                     return attrib
             except Exception as e:
                 self._listener.on_exception(e, self._driver)
@@ -316,7 +317,7 @@ class EventFiringWebElement(object):
         if hasattr(self._webelement, name):
             try:
                 attrib = getattr(self._webelement, name)
-                if not callable(attrib):
+                if not isinstance(attrib, collections.Callable):
                     return attrib
             except Exception as e:
                 self._listener.on_exception(e, self._driver)

@@ -16,7 +16,7 @@
 try:
     import http.client as http_client
 except ImportError:
-    import httplib as http_client
+    import http.client as http_client
 
 import shutil
 import socket
@@ -74,7 +74,7 @@ class WebDriver(RemoteWebDriver):
             if self.profile.tempfolder is not None:
                 shutil.rmtree(self.profile.tempfolder)
         except Exception as e:
-            print(str(e))
+            print((str(e)))
 
     @property
     def firefox_profile(self):

@@ -22,7 +22,7 @@ from shutil import copy
 import sys
 
 from distutils.command.install import INSTALL_SCHEMES
-for scheme in INSTALL_SCHEMES.values():
+for scheme in list(INSTALL_SCHEMES.values()):
     scheme['data'] = scheme['purelib']
 
 setup_args = {

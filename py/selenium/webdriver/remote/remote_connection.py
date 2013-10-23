@@ -25,7 +25,7 @@ except ImportError:
 try:
     from urllib import parse
 except ImportError:
-    import urlparse as parse
+    import urllib.parse as parse
 
 from .command import Command
 from .errorhandler import ErrorCode
@@ -404,7 +404,7 @@ class RemoteConnection(object):
             if response.code > 399 and response.code < 500:
                 return {'status': response.code, 'value': response.read()}
             body = response.read().decode('utf-8').replace('\x00', '').strip()
-            content_type = [value for name, value in response.info().items() if name.lower() == "content-type"]
+            content_type = [value for name, value in list(response.info().items()) if name.lower() == "content-type"]
             if not any([x.startswith('image/png') for x in content_type]):
                 try:
                     data = utils.load_json(body.strip())
